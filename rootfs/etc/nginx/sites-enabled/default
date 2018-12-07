@@ -1,5 +1,12 @@
+map $http_x_forwarded_proto $fastcgi_param_https_variable {
+    default '';
+    https 'on';
+}
+
 server {
   listen *:80;
+
+  include /etc/nginx/conf.d/docker/*.conf;
 
   set $root_path /var/www/activecollab5/public;
   root $root_path;
@@ -34,6 +41,7 @@ server {
     fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
     fastcgi_index index.php;
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param HTTPS $fastcgi_param_https_variable;
     include fastcgi_params;
   }
 
