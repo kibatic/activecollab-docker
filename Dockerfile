@@ -14,7 +14,5 @@ RUN apt-get -qqq update && export DEBIAN_FRONTEND=noninteractive &&\
 
 RUN mkdir -p /var/lib/php/sessions && chmod -R a+rw /var/lib/php/sessions
 
-RUN rm -f /etc/nginx/sites-enabled/default
-
 ADD rootfs /
 
