@@ -12,5 +12,6 @@ RUN apt-get -qqq update && export DEBIAN_FRONTEND=noninteractive &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN mkdir -p /var/lib/php/sessions && chmod -R a+rw /var/lib/php/sessions
 
 ADD rootfs /
